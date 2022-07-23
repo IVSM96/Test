@@ -1,0 +1,71 @@
+<template>
+    <div class="card">
+        <img :src="product_data.link" alt=""/>
+        <div class="product_name">{{product_data.name}}</div>
+        <div class="product_description">{{product_data.description}}</div>
+        <div class="product_price">{{product_data.price}} руб.</div>
+    </div>
+</template>
+
+
+<script>
+export default {
+    props: {
+        product_data: {
+            type: Object,
+            dafault() {
+                return {}
+            }
+        }
+    }
+}
+</script>
+
+<style lang="scss">
+.card{
+    width: 332px;
+    height: 423px;
+    margin: 16px;
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    background: #FFFEFB;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
+    border-radius: 4px;
+    img {
+        width: 100%;
+        height: 200px;
+        border-radius: 4px 4px 0px 0px;
+    }
+    .product_name {
+        height: 25px;
+        margin-left: 16px;
+        font-family: 'Source Sans Pro';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 25px;
+        color: #3F3F3F;
+    }
+    .product_description {
+        width: 300px;
+        height: 80px;
+        font-family: 'Source Sans Pro';
+        font-style: normal;
+        font-weight: 400;
+        margin-left: 16px;
+        font-size: 16px;
+        line-height: 20px;
+        color: #3F3F3F;
+    }
+    .product_price {
+        font-family: 'Source Sans Pro';
+        font-style: normal;
+        font-weight: 600;
+        margin: 16px 0 0 16px;
+        font-size: 24px;
+        line-height: 30px;
+        color: #3F3F3F;
+    }
+}
+</style>

@@ -11,7 +11,7 @@
 .select {
  width: 140px;
  height: 36px; 
- margin-top: 31px;  
+ margin-top: 20px;  
  background: #FFFEFB;
  border: none;
  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
