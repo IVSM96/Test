@@ -1,5 +1,6 @@
 <template>
     <div class="card">
+        <button @click="deleteProduct_data(index)"><img src="./icons/Vector.svg"/></button>
         <img :src="product_data.link" alt=""/>
         <div class="product_name">{{product_data.name}}</div>
         <div class="product_description">{{product_data.description}}</div>
@@ -16,13 +17,25 @@ export default {
             dafault() {
                 return {}
             }
+        },
+        deleteProduct: {
+            type: Function
+        },
+        index: {
+            type: Number
         }
-    }
+    }, 
+     methods: {
+         deleteProduct_data(index) {
+            this.deleteProduct(index)
+         }
+     } 
 }
 </script>
 
 <style lang="scss">
 .card{
+    position: relative;
     width: 332px;
     height: 423px;
     margin: 16px;
@@ -36,6 +49,27 @@ export default {
         width: 100%;
         height: 200px;
         border-radius: 4px 4px 0px 0px;
+    }
+    
+    button {
+    //    visibility: hidden;
+       position:absolute;
+       right: -10px;
+       top: -10px;
+       width: 32px;
+       height: 32px; 
+       background: #FF8484;
+       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+       border-radius: 10px;
+       border: none;
+       cursor: pointer;
+       img {
+        width: 12px;
+        height: 16px;
+       }
+    }
+    .card:hover button {
+        visibility: visible;
     }
     .product_name {
         height: 25px;

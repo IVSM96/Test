@@ -1,6 +1,14 @@
 <template>
 <section class="generalSection">
-    <form @submit.prevent="validate()">
+<div class="header">
+    <h3>Добавление товара</h3>
+    <Select 
+    :sortingProduct="sortingProduct"
+    :sorting="sorting"
+    />
+</div>
+    <div class="wrapper">
+      <form @submit.prevent="validate()">
         <div class="form">
             <div>
                 <p>Наименование товара</p>
@@ -46,16 +54,20 @@
     </form>
     <div class="cardList">
         <Card 
-            v-for="product in productList"
-            :key="product.name"
+            v-for="(product, index) in productList"
+            :key="index"
+            :index="index"
             :product_data="product"
+            :deleteProduct="deleteProduct"
         />
+    </div>  
     </div>
 </section> 
 </template>
 
 <script>
 import Card from './Card.vue'
+import Select from './Select.vue';
 export default {
     data() {
         return {
@@ -83,6 +95,20 @@ export default {
         },
     },
     methods: {
+            deleteProduct(index) {
+                this.productList.splice(index, 1)
+            },
+            sortingProduct(data) {
+                 if(data === 'Сначала дешевле') {
+                    this.productList.sort((a,b) => a.price - b.price)
+                 }
+                 if(data === 'Сначала дороже') {
+                    this.productList.sort((a,b) => b.price - a.price)
+                 }
+                 if(data === 'По умолчанию') {
+                    this.productList
+                 }
+            },
         validate() {
             if (!this.isFormValid) {
                 return;
@@ -93,15 +119,42 @@ export default {
                                                        price: this.price}
                                 ]
            
-        }
+        },
+        
     },
-    components: { Card }
+    components: { Card, Select }
 }
 </script>
 
 <style lang="scss">
+@import url("https://use.typekit.net/nbh0lcy.css");
+body {
+  font-family: source-sans-pro, sans-serif;  
+  background: #E5E5E5;
+}
+.wrapper {
+    display: flex;
+}
+.header {
+    font-weight: 600;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+       height: 35px;
+       margin-top: 32px;
+       margin-left: 32px;
+       font-weight: 600;
+       font-style: normal;
+       font-size: 28px;
+       line-height: 35px;
+    }
+}
 .generalSection {
     display: flex;
+    flex-direction: column;
 }
 .cardList {
     display: flex;
